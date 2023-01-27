@@ -32,7 +32,7 @@ class SoundSplitter:
 
         # Only Mono
         if self.sound.nchannels != 1:
-            print 'Just mono files'
+            print('Just mono files')
             sys.exit(0)
 
     # 分為左右耳聲道
@@ -87,6 +87,7 @@ class SoundSplitter:
 
 # 執行
 if __name__ == '__main__':
+    
     sspl = SoundSplitter('IRCAMdb', 'violin.wav', 0, 0)
     sspl.soundsplit()
     # sspl.plot()
