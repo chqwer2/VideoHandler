@@ -39,11 +39,12 @@ np.random.seed(6)
 
 lamda = 1 # wavelength
 kappa = np.pi/lamda # wave number
-L = 2  # number of sources fix resource
+L = 1  # number of sources fix resource
 N = 32  # number of ULA elements
 snr = 10 # signal to noise ratio
 
 array = np.linspace(0,(N-1)/2,N)
+print("array")
 
 plt.figure()
 plt.subplot(221)
@@ -55,8 +56,9 @@ plt.legend(['Antenna'])
 Thetas = np.pi*(np.random.rand(L)-1/2)   # random source directions
 Alphas = np.random.randn(L) + np.random.randn(L)*1j # random source powers
 Alphas = np.sqrt(1/2)*Alphas
-#print(Thetas)
-#print(Alphas)
+print(Thetas)
+print(Alphas)
+
 
 h = np.zeros(N)
 for i in range(L):
@@ -67,8 +69,8 @@ numAngles = Angles.size
 
 hv = np.zeros(numAngles)
 for j in range(numAngles):
-    av = array_response_vector(array,Angles[j])
-    hv[j] = np.abs(np.inner(h,av.conj()))
+    av = array_response_vector(array, Angles[j])
+    hv[j] = np.abs(np.inner(h, av.conj()))
 
 powers = np.zeros(L)
 for j in range(L):
@@ -76,11 +78,13 @@ for j in range(L):
     powers[j] = np.abs(np.inner(h,av.conj()))
 
 plt.subplot(222)
-plt.plot(Angles,hv)
-plt.plot(Thetas,powers,'*')
+plt.plot(Angles, hv)
+plt.plot(Thetas, powers,'*')
+
 plt.title('Correlation')
 plt.legend(['Correlation power','Actual DoAs'])
 numrealization = 100
+
 H = np.zeros((N,numrealization)) + 1j*np.zeros((N,numrealization))
 
 for iter in range(numrealization):
@@ -89,7 +93,10 @@ for iter in range(numrealization):
         pha = np.exp(1j*2*np.pi*np.random.rand(1))
         htmp = htmp + pha*Alphas[i]*array_response_vector(array,Thetas[i])
     H[:,iter] = htmp + np.sqrt(0.5/snr)*(np.random.randn(N)+np.random.randn(N)*1j)
+
 CovMat = H@H.conj().transpose()
+
+# print("CovMat:", CovMat)
 
 # MUSIC algorithm
 DoAsMUSIC, psindB = music(CovMat,L,N,array,Angles)
