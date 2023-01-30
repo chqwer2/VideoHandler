@@ -62,7 +62,7 @@ def get_meta(clip, json_path, frame_info, audio_info):
 
 def main():
     args = parser.parse_args()
-    home_address = "/bask/projects/j/jiaoj-3d-vision/360XProject/Data"
+    home_address = "/bask/projects/j/jiaoj-3d-vision/360XProject/Data/*/*/*"
     # [Inside, Outside]
     # [Type]
     # [Video ID]
@@ -71,7 +71,7 @@ def main():
     
     
     # video_root = f'./RawVideos/{args.dataset_name}'
-    video_root = "/bask/projects/j/jiaoj-3d-vision/360XProject/Data/Inside/Station/Video_00_Euston_Indoor/360"
+    video_root = os.path.join(home_address, "360*")
     
     out_root = video_root 
     
@@ -80,12 +80,14 @@ def main():
     video_list = glob.glob(f'{video_root}/*')
     video_list.sort()
 
-    video_list = video_list[int(args.split / args.total * len(video_list)): int((args.split+1) / args.total * len(video_list))]
+    video_list = video_list[2]
     
     for video in tqdm(video_list, desc=f'Video Processing ID = {str(args.split).zfill(2)}'):
         # import pdb; pdb.set_trace()
         video_name = video.split('/')[-1][:-4]
-        processed_path = os.path.join(out_root, video_name)
+        processed_path = video_name.rstrip(video_name).rstrip('/')
+        print("processed_path: ", processed_path)
+        
         frame_path = os.path.join(processed_path, 'frames')
         audio_path = os.path.join(processed_path, 'audio')
         meta_path = os.path.join(processed_path, 'meta.json')
