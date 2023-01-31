@@ -77,6 +77,7 @@ def exam(args):
 
 def create_list_for_video(args, name, video_list):
     # import pdb; pdb.set_trace()
+    
     sample_list = []
     if args.split_by_video:
         clip_list = []
@@ -90,7 +91,10 @@ def create_list_for_video(args, name, video_list):
 
     for video in tqdm(new_video_list):
         path = os.path.join('./data/DemoVideo', video)
-        meta_path = os.path.join(video, 'meta.json')
+        try:
+            meta_path = os.path.join(video, 'meta.json')
+        except:
+            continue
         with open(meta_path, "r") as f:
             meta_dict = json.load(f)
         frame_num = meta_dict['frame_num']
@@ -132,6 +136,7 @@ def create_list_for_video(args, name, video_list):
 
 
 def main(args):
+    test_num = 10
     # import pdb; pdb.set_trace()
     # home_address = "/bask/projects/j/jiaoj-3d-vision/360XProject/Data"
     home_address = "/bask/projects/j/jiaoj-3d-vision/360XProject/Data/*/*/*"
@@ -155,7 +160,7 @@ def main(args):
     data_list = glob.glob(f'{video_root}')
     
     data_list.sort()
-    data_list = data_list[:2]
+    data_list = data_list[:test_num]
     # if not args.unshuffle:
     #     random.shuffle(data_list)
 
