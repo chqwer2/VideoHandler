@@ -43,3 +43,5 @@ chmod +x process.sh
 # result in results/YOUR_SAVE_PATH
 
 
+# libX11.so.6: cannot open shared object file: No such file or directory
+
