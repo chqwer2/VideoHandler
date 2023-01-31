@@ -194,7 +194,7 @@ def main(args):
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    if args.exam:
-        exam(args)
-    else:
-        main(args)
+    # if args.exam:
+    #     exam(args)
+    # else:
+    main(args)
