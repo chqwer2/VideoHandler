@@ -133,42 +133,62 @@ def create_list_for_video(args, name, video_list):
 
 def main(args):
     # import pdb; pdb.set_trace()
+    # home_address = "/bask/projects/j/jiaoj-3d-vision/360XProject/Data"
+    home_address = "/bask/projects/j/jiaoj-3d-vision/360XProject/Data/*/*/*"
+    # [Inside, Outside]
+    # [Type]
+    # [Video ID]
+    # [360 Video or 360]
+    # Contain 360
+    
 
-    read_path = f'ProcessedData/{args.dataset_name}'
-    split_path = f'./data-split/{args.dataset_name}'
+    video_root = os.path.join(home_address, "360*")
+    # os.makedirs(home_address, exist_ok=True)
+    # read_path = f'ProcessedData/{args.dataset_name}'
+    # split_path = f'./data-split/{args.dataset_name}'
+    
     if args.type != '':
         split_path = os.path.join(split_path, args.type)
 
     os.makedirs(split_path, exist_ok=True)
 
-    data_list = glob.glob(f'{read_path}/*')
+    data_list = glob.glob(f'{video_root}')
     data_list.sort()
-    if not args.unshuffle:
-        random.shuffle(data_list)
+    data_list = data_list[:2]
+    # if not args.unshuffle:
+    #     random.shuffle(data_list)
 
     begin = 0
-    ratios = args.data_split.split(':')
-    ratios = np.array(list(map(int, ratios)))
-    ratios = ratios / ratios.sum()
-    n_train = begin + ratios[0]
-    n_val = n_train + ratios[1]
-    n_test = n_val + ratios[2]
+    
+    sample_list = create_list_for_video(args, name, data_list)
+    
+    name = 'vis'
+    split_path = "/bask/projects/j/jiaoj-3d-vision/360XProject/Data/Meta"
+    csv_name = f'{split_path}/{name}.csv'
+    write_csv(sample_list, csv_name)
+        
+    # ratios = args.data_split.split(':')
+    # ratios = np.array(list(map(int, ratios)))
+    # ratios = ratios / ratios.sum()
+    # n_train = begin + ratios[0]
+    # n_val = n_train + ratios[1]
+    # n_test = n_val + ratios[2]
 
-    train_list = data_list[int(len(data_list) * begin) : int(len(data_list) * n_train)]
-    valid_list = data_list[int(len(data_list) * n_train) : int(len(data_list) * n_val)]
-    test_list = data_list[int(len(data_list) * n_val) : int(len(data_list) * n_test)]
-    # video_dict = get_download_list(args)
+    # train_list = data_list[int(len(data_list) * begin) : int(len(data_list) * n_train)]
+    # valid_list = data_list[int(len(data_list) * n_train) : int(len(data_list) * n_val)]
+    # test_list = data_list[int(len(data_list) * n_val) : int(len(data_list) * n_test)]
+    # # video_dict = get_download_list(args)
 
-    csv_zip = zip(['train', 'val', 'test'], [train_list, valid_list, test_list])
-    for name, video_list in tqdm(csv_zip):
-        if len(video_list) == 0:
-            continue
+    # csv_zip = zip(['train', 'val', 'test'], [train_list, valid_list, test_list])
+    # for name, video_list in tqdm(csv_zip):
+    #     if len(video_list) == 0:
+    #         continue
 
-        sample_list = create_list_for_video(args, name, video_list)
-        if len(video_list) == len(data_list):
-            name = 'vis'
-        csv_name = f'{split_path}/{name}.csv'
-        write_csv(sample_list, csv_name)
+    #     sample_list = create_list_for_video(args, name, video_list)
+    #     if len(video_list) == len(data_list):
+    #         name = 'vis'
+    #     csv_name = f'{split_path}/{name}.csv'
+    #     write_csv(sample_list, csv_name)
 
 # python create-csv.py --data_split='1:0:0'
 

@@ -69,8 +69,7 @@ def main():
     # [360 Video or 360]
     # Contain 360
     
-    
-    # video_root = f'./RawVideos/{args.dataset_name}'
+
     video_root = os.path.join(home_address, "360*")
     
     out_root = video_root 
@@ -83,7 +82,7 @@ def main():
     video_list = video_list[:2]
     
     for video in tqdm(video_list, desc=f'Video Processing ID = {str(args.split).zfill(2)}'):
-        # import pdb; pdb.set_trace()
+        
         video_name = video.split('/')[-1] #[:-4]
         processed_path = video.rstrip(video_name).rstrip('/')
         
@@ -92,6 +91,7 @@ def main():
         frame_path = os.path.join(processed_path, 'frames')
         audio_path = os.path.join(processed_path, 'audio')
         meta_path = os.path.join(processed_path, 'meta.json')
+        
         os.makedirs(frame_path, exist_ok=True)
         os.makedirs(audio_path, exist_ok=True)
 

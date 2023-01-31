@@ -188,7 +188,9 @@ def test(args, device):
 
     if isinstance(pr.list_vis, str):
         samples = []
-        csv_file = csv.DictReader(open(pr.list_vis, 'r'), delimiter=',')
+        list_vis = "/bask/projects/j/jiaoj-3d-vision/360XProject/Data/Meta/vis.csv"
+        # csv_file = csv.DictReader(open(pr.list_vis, 'r'), delimiter=',')
+        csv_file = csv.DictReader(open(list_vis, 'r'), delimiter=',')
         for row in csv_file:
             if not row in samples:
                 samples.append(row)
