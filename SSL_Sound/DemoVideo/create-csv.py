@@ -142,7 +142,7 @@ def main(args):
     # Contain 360
     
 
-    video_root = os.path.join(home_address, "360*")
+    video_root = os.path.join(home_address, "360*/*'")
     # os.makedirs(home_address, exist_ok=True)
     # read_path = f'ProcessedData/{args.dataset_name}'
     # split_path = f'./data-split/{args.dataset_name}'
@@ -153,6 +153,7 @@ def main(args):
     # os.makedirs(split_path, exist_ok=True)
 
     data_list = glob.glob(f'{video_root}')
+    
     data_list.sort()
     data_list = data_list[:2]
     # if not args.unshuffle:
