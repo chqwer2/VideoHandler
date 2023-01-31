@@ -1,6 +1,5 @@
 # https://ificl.github.io/stereocrw/
-git clone https://github.com/IFICL/stereocrw
-cd stereocrw
+# git clone https://github.com/IFICL/stereocrw
 
 # Environments
 source ~/.bashrc
@@ -9,8 +8,8 @@ conda env create -f environment.yml
 conda activate Stereo
 
 #checkpoint
-mkdir -p checkpoints/pretrained-models
-wget -O checkpoints/pretrained-models/FreeMusic-StereoCRW-1024.pth.tar https://www.dropbox.com/s/qwepkmli4cifn84/FreeMusic-StereoCRW-1024.pth.tar?dl=1
+mkdir -p ../../checkpoints/pretrained-models
+wget -O ../../checkpoints/pretrained-models/FreeMusic-StereoCRW-1024.pth.tar https://www.dropbox.com/s/qwepkmli4cifn84/FreeMusic-StereoCRW-1024.pth.tar?dl=1
 
 # vis_scripts/eval_itd_in_wild.py
 #In params: list_test = 'data/Youtube-ASMR/data-split/keytime/test.csv',

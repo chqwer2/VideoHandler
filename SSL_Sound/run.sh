@@ -10,7 +10,5 @@ chmod +x process.sh
 ./process.sh 'YourVideo'
 
 
-# visualizing the ITD prediction of videos over time in vis_scripts/vis_video_itd.py. 
-
-
-# ./scripts/visualization_video.sh 'YourVideo' YOUR_SAVE_PATH
+# visualizing the ITD prediction of videos over time
+./scripts/visualization_video.sh 'YourVideo' YOUR_SAVE_PATH

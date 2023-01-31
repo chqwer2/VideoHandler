@@ -79,13 +79,14 @@ def main():
     
     video_list = glob.glob(f'{video_root}/*')
     video_list.sort()
-
-    video_list = video_list[2]
+    
+    video_list = video_list[:2]
     
     for video in tqdm(video_list, desc=f'Video Processing ID = {str(args.split).zfill(2)}'):
         # import pdb; pdb.set_trace()
-        video_name = video.split('/')[-1][:-4]
-        processed_path = video_name.rstrip(video_name).rstrip('/')
+        video_name = video.split('/')[-1] #[:-4]
+        processed_path = video.rstrip(video_name).rstrip('/')
+        
         print("processed_path: ", processed_path)
         
         frame_path = os.path.join(processed_path, 'frames')
@@ -95,8 +96,10 @@ def main():
         os.makedirs(audio_path, exist_ok=True)
 
         if not os.path.exists(meta_path):
+            print("Get Frames...")
             frame_info = get_frame(video, frame_path, args.frame_rate)
             # audio
+            print("Get Audios...")
             audio_info = get_audio(video, audio_path)
             
             if audio_info is None:
