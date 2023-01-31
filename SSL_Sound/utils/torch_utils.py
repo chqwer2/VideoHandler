@@ -64,6 +64,10 @@ def get_dataloader(args, pr, split='train', shuffle=False, drop_last=False, batc
         read_list = pr.list_val
     elif split == 'test':
         read_list = pr.list_test
+    print("read_list:",  read_list)
+    print("pr.dataloader:", pr.dataloader)
+    
+    
     dataset = data_loader(args, pr, read_list, split=split)
     batch_size = batch_size if batch_size else args.batch_size
     dataset.getitem_test(0)

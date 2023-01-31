@@ -164,9 +164,11 @@ def test(args, device):
     pr = fn()
     pr.dataloader = 'SingleVideoDataset'
     update_param(args, pr)
+    
     # ----- make dirs for results ----- #
     sys.stdout = utils.LoggerOutput(os.path.join('results', args.exp, 'log.txt'))
     os.makedirs('./results/' + args.exp, exist_ok=True)
+    
     # ------------------------------------- #
     tqdm.write('{}'.format(args)) 
     tqdm.write('{}'.format(pr))
@@ -178,7 +180,7 @@ def test(args, device):
 
     # -------- Loading checkpoints weights ------------- #
     if args.resume:
-        resume = './checkpoints/' + args.resume
+        resume = args.resume   # './checkpoints/' + 
         net, _ = torch_utils.load_model(resume, net, device=device, strict=False)
 
     # ------------------- #
