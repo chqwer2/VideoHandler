@@ -147,10 +147,10 @@ def main(args):
     # read_path = f'ProcessedData/{args.dataset_name}'
     # split_path = f'./data-split/{args.dataset_name}'
     
-    if args.type != '':
-        split_path = os.path.join(split_path, args.type)
+    # if args.type != '':
+    #     split_path = os.path.join(split_path, args.type)
 
-    os.makedirs(split_path, exist_ok=True)
+    # os.makedirs(split_path, exist_ok=True)
 
     data_list = glob.glob(f'{video_root}')
     data_list.sort()
