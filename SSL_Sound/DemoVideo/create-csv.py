@@ -160,9 +160,11 @@ def main(args):
 
     begin = 0
     
-    sample_list = create_list_for_video(args, name, data_list)
-    
     name = 'vis'
+    
+    sample_list = create_list_for_video(args, 'train', data_list)
+    
+    
     split_path = "/bask/projects/j/jiaoj-3d-vision/360XProject/Data/Meta"
     csv_name = f'{split_path}/{name}.csv'
     write_csv(sample_list, csv_name)
