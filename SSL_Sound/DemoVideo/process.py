@@ -62,6 +62,7 @@ def get_meta(clip, json_path, frame_info, audio_info):
 
 def main():
     args = parser.parse_args()
+    test_number = 10
     home_address = "/bask/projects/j/jiaoj-3d-vision/360XProject/Data/*/*/*"
     # [Inside, Outside]
     # [Type]
@@ -79,7 +80,7 @@ def main():
     video_list = glob.glob(f'{video_root}/*')
     video_list.sort()
     
-    video_list = video_list[:2]
+    video_list = video_list[:test_number]
     
     for video in tqdm(video_list, desc=f'Video Processing ID = {str(args.split).zfill(2)}'):
         

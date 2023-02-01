@@ -163,7 +163,7 @@ def main(args):
     data_list = data_list[:test_num]
     # if not args.unshuffle:
     #     random.shuffle(data_list)
-
+    print("data_list:", data_list)
     begin = 0
     
     name = 'vis'
