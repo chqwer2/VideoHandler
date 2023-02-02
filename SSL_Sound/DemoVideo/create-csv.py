@@ -92,13 +92,16 @@ def create_list_for_video(args, name, video_list):
 
     for video in tqdm(new_video_list):
         path = video  # os.path.join('./data/DemoVideo', video)
-        try:
-            meta_path = os.path.join(video, 'meta.json')
+        
+        meta_path = os.path.join(video, 'meta.json')
+        
+        try:  
+            with open(meta_path, "r") as f:
+                meta_dict = json.load(f)
         except:
+            print("Broken meta:", meta_path)
             continue
-        with open(meta_path, "r") as f:
             
-            meta_dict = json.load(f)
         frame_num = meta_dict['frame_num']
         frame_rate = meta_dict['frame_rate']
         # import pdb; pdb.set_trace()
