@@ -27,11 +27,12 @@ random.seed(1234)
 def write_csv(data_list, filepath):
     # import pdb; pdb.set_trace()
     with open(filepath, 'w', newline='') as csvfile:
-        fieldnames = "Train" # "train/ test/ val  "#list(data_list[0].keys())
+        fieldnames = ["path"] # "train/ test/ val  "#list(data_list[0].keys())
         writer = csv.DictWriter(csvfile, delimiter=',', fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
         writer.writeheader()
 
         for info in data_list:
+            print("info)
             writer.writerow(info)
             
     print('{} items saved to {}.'.format(len(data_list), filepath))
