@@ -140,32 +140,26 @@ def main(args):
     # import pdb; pdb.set_trace()
     # home_address = "/bask/projects/j/jiaoj-3d-vision/360XProject/Data"
     home_address = "/bask/projects/j/jiaoj-3d-vision/360XProject/Data/*/*/*"
-    # [Inside, Outside]
-    # [Type]
-    # [Video ID]
-    # [360 Video or 360]
+    # [Inside, Outside]/ [Type]/ [Video ID]/ [360 Video or 360]
     # Contain 360
     
-
-    video_root = os.path.join(home_address, "360*/*'")
-    # os.makedirs(home_address, exist_ok=True)
-    # read_path = f'ProcessedData/{args.dataset_name}'
-    # split_path = f'./data-split/{args.dataset_name}'
+    video_root = os.path.join(home_address, "360*")
     
-    # if args.type != '':
-    #     split_path = os.path.join(split_path, args.type)
-
-    # os.makedirs(split_path, exist_ok=True)
-
-    data_list = glob.glob(f'{video_root}')
+    out_root = video_root 
+    
+    os.makedirs(out_root, exist_ok=True)
+    
+    video_list = glob.glob(f'{video_root}/*')
+    print("data_list:", video_list)
+    
+    video_list.sort()
+    
+    data_list = video_list[:test_number]
     print("data_list:", data_list)
     
-    data_list.sort()
-    data_list = data_list[:test_num]
-    # if not args.unshuffle:
-    #     random.shuffle(data_list)
     
-    print("data_list:", data_list)
+    
+    
     begin = 0
     
     name = 'vis'
