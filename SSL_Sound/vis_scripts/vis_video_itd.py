@@ -201,8 +201,10 @@ def test(args, device):
     #  --------- Testing ------------ #
     for i in tqdm(range(len(samples)), desc="Generating Video"):
         pr.list_test = samples[i]['path']
+        print("samples[i]['path']:", samples[i]['path'])
+        
         # ----- Dataset and Dataloader ----- #
-        test_dataset, test_loader = torch_utils.get_dataloader(args, pr, split='path', shuffle=False, drop_last=False)
+        test_dataset, test_loader = torch_utils.get_dataloader(args, pr, split='test', shuffle=False, drop_last=False)
         # --------------------------------- #
         inference(args, pr, net, criterion, test_dataset, test_loader, device, video_idx=i)
 
