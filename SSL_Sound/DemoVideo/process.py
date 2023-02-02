@@ -64,13 +64,9 @@ def main():
     args = parser.parse_args()
     test_number = 10
     home_address = "/bask/projects/j/jiaoj-3d-vision/360XProject/Data/*/*/*"
-    # [Inside, Outside]
-    # [Type]
-    # [Video ID]
-    # [360 Video or 360]
+    # [Inside, Outside]/ [Type]/ [Video ID]/ [360 Video or 360]
     # Contain 360
     
-
     video_root = os.path.join(home_address, "360*")
     
     out_root = video_root 
